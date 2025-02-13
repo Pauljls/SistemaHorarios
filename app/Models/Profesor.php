@@ -6,21 +6,26 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 
-class User extends Authenticatable
+class Profesor extends Authenticatable
 {
     /** @use HasFactory<\Database\Factories\UserFactory> */
     use HasFactory, Notifiable;
+    public $timestamps = false;
 
+    protected $table = 'profesores';
     /**
      * The attributes that are mass assignable.
      *
      * @var list<string>
      */
     protected $fillable = [
-        'name',
         'email',
         'password',
+        'infousuario_id',
+        'rolusuario_id'
     ];
 
     /**
@@ -44,5 +49,14 @@ class User extends Authenticatable
             'email_verified_at' => 'datetime',
             'password' => 'hashed',
         ];
+    }
+
+    
+    public function infoUsuario(): BelongsTo {
+        return $this->belongsTo(InfoUsuario::class,'infousuario_id');
+    }
+
+    public function rolUsuario(): BelongsTo {
+        return $this->belongsTo(RolUsuario::class,'rolusuario_id');
     }
 }
