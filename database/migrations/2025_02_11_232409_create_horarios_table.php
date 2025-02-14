@@ -21,7 +21,7 @@ return new class extends Migration
         Schema::create('periodos',function(Blueprint $table){
             $table->id();
             $table->string('año')->nullable();
-
+            $table->string('semestre')->nullable();
             
         });
 
@@ -38,22 +38,24 @@ return new class extends Migration
             $table->foreignId('ciclo_id')->constrained('ciclos')->onDelete('cascade')->nullable();
         });
 
-        Schema::create('modalidadescursos',function(blueprint $table){
-            $table->id();
-            $table->foreignId('modalidad_id')->constrained('modalidades')->onDelete('cascade')->nullable();
-            $table->foreignId('curso_id')->constrained('cursos')->onDelete('cascade')->nullable();
-        });
-
         Schema::create('aulas', function (Blueprint $table) {
             $table->id();
             $table->string('nombre')->nullable();
+            $table->unsignedInteger('capacidad')->nullable();
+        });
+
+        Schema::create('modalidadcursoaulas',function(blueprint $table){
+            $table->id();
+            $table->foreignId('modalidad_id')->constrained('modalidades')->onDelete('cascade')->nullable();
+            $table->foreignId('curso_id')->constrained('cursos')->onDelete('cascade')->nullable();
+            $table->foreignId('aula_id')->constrained('aulas')->onDelete('cascade')->nullable();
         });
 
         Schema::create('horarios', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('modalidadescurso_id')->constrained('modalidadescursos')->onDelete('cascade')->nullable();
+            $table->foreignId('modalidadescursoaula_id')->constrained('modalidadcursoaulas')->onDelete('cascade')->nullable();
             $table->foreignId('profesor_id')->constrained('profesores')->onDelete('cascade')->nullable();
-            $table->foreignId('aula_id')->constrained('aulas')->onDelete('cascade')->nullable();
+            //$table->foreignId('aula_id')->constrained('aulas')->onDelete('cascade')->nullable();
             $table->unsignedInteger('horainicio')->nullable();
             $table->unsignedInteger('horafin')->nullable();
         });

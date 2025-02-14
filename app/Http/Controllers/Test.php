@@ -7,6 +7,7 @@ use App\Models\Condicion;
 use App\Models\CategoriaDocente;
 use App\Models\InfoUsuario;
 use App\Models\RolUsuario;
+use App\Models\Aula;
 use Illuminate\Http\Request;
 
 class Test extends Controller
@@ -98,6 +99,31 @@ class Test extends Controller
       ]);
       
       return $profesor;
-    } 
+    }
+    
+    public function createAulas(){
+        $aula = Aula::create([
+            'nombre'=>'Info5',
+            'capacidad'=>32
+        ]);
+        $aula1 = Aula::create([
+            'nombre'=>'Info3',
+            'capacidad'=>20
+        ]);
+        $aula2 = Aula::create([
+            'nombre'=>'Pool17',
+            'capacidad'=>40
+        ]);
+        $aula3 = Aula::create([
+            'nombre'=>'Pool12',
+            'capacidad'=>35
+        ]);
+        $aula4 = Aula::create([
+            'nombre'=>'Info2',
+            'capacidad'=>25
+        ]);
+
+        return response()->json([$aula,$aula1,$aula2,$aula3,$aula4]);
+    }
 
 }
