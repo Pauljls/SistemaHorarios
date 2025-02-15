@@ -53,7 +53,7 @@ return new class extends Migration
         Schema::create('modalidadcursoaulas',function(blueprint $table){
             $table->id();
             $table->foreignId('modalidad_id')->constrained('modalidades')->onDelete('cascade')->nullable();
-            $table->foreignId('curso_id')->constrained('cursos')->onDelete('cascade')->nullable();
+            $table->foreignId('cursociclo_id')->constrained('cursociclos')->onDelete('cascade')->nullable();
             $table->foreignId('aula_id')->constrained('aulas')->onDelete('cascade')->nullable();
         });
 
