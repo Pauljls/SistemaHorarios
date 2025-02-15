@@ -8,6 +8,7 @@ use App\Models\CategoriaDocente;
 use App\Models\InfoUsuario;
 use App\Models\RolUsuario;
 use App\Models\Aula;
+use App\Models\Curso;
 use Illuminate\Http\Request;
 
 class Test extends Controller
@@ -19,9 +20,10 @@ class Test extends Controller
     {
         //
         //$condiciones =  Condicion::all();
-        $rol= RolUsuario::first();
-        $rol->load('profesores');
-        return response()->json($rol);
+        //$rol= RolUsuario::first();
+        //$rol->load('profesores');
+        $cursos = Curso::all();
+        return response()->json($cursos);
     }
 
     public function createRoles()
@@ -116,6 +118,100 @@ class Test extends Controller
         ]);
 
         return response()->json([$aula,$aula1,$aula2,$aula3,$aula4]);
+    }
+
+    public function createCursos(){
+        $curso = Curso::create([
+            "nombre"=>"Estrategias Algoritmicas"
+        ]);
+        $curso = Curso::create([
+            "nombre"=>"Computacion Grafica"
+        ]);
+        $curso = Curso::create([
+            "nombre"=>"Algoritmos y Complejidad"
+        ]);
+        $curso = Curso::create([
+            "nombre"=>"Lenguajes Formales y Automatas"
+        ]);
+        $curso = Curso::create([
+            "nombre"=>"Bases de Datos I"
+        ]);
+        $curso = Curso::create([
+            "nombre"=>"Ingenieria de Software I"
+        ]);
+        $curso = Curso::create([
+            "nombre"=>"Inteligencia Artificial I"
+        ]);
+        $curso = Curso::create([
+            "nombre"=>"Compiladores"
+        ]);
+        $curso = Curso::create([
+            "nombre"=>"Computacion Grafica Avanzada"
+        ]);
+        $curso = Curso::create([
+            "nombre"=>"Desarrollo de Software"
+        ]);
+        $curso = Curso::create([
+            "nombre"=>"Percepcion y Vision por Computadora"
+        ]);
+
+        $curso = Curso::create([
+            "nombre"=>"Redes de computadoras I"
+        ]);
+        
+        $curso = Curso::create([
+            "nombre"=>"Sistemas Operativos I"
+        ]);
+        $curso = Curso::create([
+            "nombre"=>"Robotica"
+        ]);
+        $curso = Curso::create([
+            "nombre"=>"Redes de Computadoras II"
+        ]);
+        
+        $curso = Curso::create([
+            "nombre"=>"Sistemas Operativos II"
+        ]);
+
+        $curso = Curso::create([
+            "nombre"=>"Practicas Pre-Profesionales"
+        ]);
+
+        $curso = Curso::create([
+            "nombre"=>"Interaccion Humano Computador"
+        ]);
+
+        $curso = Curso::create([
+            "nombre"=>"Topicos en Base de Datos"
+        ]);
+
+        $curso = Curso::create([
+            "nombre"=>"Topicos en Ing de Software"
+        ]);
+
+        $curso = Curso::create([
+            "nombre"=>"Ing de Software Avanzada"
+        ]);
+
+        $curso = Curso::create([
+            "nombre"=>"Seguridad Informatica"
+        ]);
+
+        $curso = Curso::create([
+            "nombre"=>"Topicos en Tecnologias Inmersivas"
+        ]);
+
+        $curso = Curso::create([
+            "nombre"=>"Sistemas de Informacion"
+        ]);
+
+        $curso = Curso::create([
+            "nombre"=>"Proeycto de competencias"
+        ]);
+
+        return response()->json([
+            "mensaje"=>"Cursos creadoas"
+        ], status : 200);
     }
 
 }

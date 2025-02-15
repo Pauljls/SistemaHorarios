@@ -13,5 +13,14 @@ class LogoutController extends Controller
     public function __invoke(Request $request)
     {
         //
+        try{
+            auth()->logout();
+
+            return response()->json(["mensaje"=>"Log out Exitoso"],status:200);
+        }catch(JWTException $exception){
+                return response()->json([
+                "mensaje"=>"No tienes acceso"    
+                ], status : 401);
+        }
     }
 }

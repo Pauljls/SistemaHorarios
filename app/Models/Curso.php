@@ -14,14 +14,13 @@ class Curso extends Model
 
     protected $fillable = [
         'nombre',
-        'ciclo_id'
     ];
 
-    public function ciclo():BelongsTo{
-        return $this->belongsTo(Ciclo::class,'ciclo_id');
+    public function cursociclos():HasMany{
+        return $this->hasMany(Ciclo::class,'curso_id');
     }
 
     public function modalidadCursoAulas():HasMany{
-        return $this->hasMany(ModalidadCursoAula::class);
+        return $this->hasMany(ModalidadCursoAula::class,'curso_id');
     }
 }

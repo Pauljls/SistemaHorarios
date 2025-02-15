@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Test;
 use App\Http\Controllers\API\LoginController;
+use App\Http\Controllers\API\LogoutController;
 
 
 
@@ -12,6 +13,7 @@ Route::post('/createCondiciones',[Test::Class,'createCondiciones'])->name('creat
 Route::post('/createCategoria',[Test::class,'createCategoria'])->name('createCategorias');
 Route::post('/crearProfesor',[Test::class,'crearProfesor'])->name('crearProfesor');
 Route::post('/createAulas',[Test::class,'createAulas'])->name('createAulas');
+Route::post('/createCursos',[Test::class,'createCursos'])->name('createCursos');
 
 
 Route::group([
@@ -19,5 +21,6 @@ Route::group([
     'prefix'=>'auth'
 ], function (){
     Route::post('login',LoginController::class);
+    Route::post('logout',LogoutController::class);
 }); 
 

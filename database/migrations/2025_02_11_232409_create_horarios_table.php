@@ -35,7 +35,13 @@ return new class extends Migration
         Schema::create('cursos',function(Blueprint $table){
             $table->id();
             $table->string('nombre')->nullable();
+            
+        });
+
+        Schema::create('cursociclos',function(Blueprint $table){
+            $table->id();
             $table->foreignId('ciclo_id')->constrained('ciclos')->onDelete('cascade')->nullable();
+            $table->foreignId('curso_id')->constrained('cursos')->onDelete('cascade')->nullable();
         });
 
         Schema::create('aulas', function (Blueprint $table) {
