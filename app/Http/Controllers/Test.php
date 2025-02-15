@@ -31,13 +31,9 @@ class Test extends Controller
             'nombre'=>'administrador'
         ]);
 
-        $rol->save();
-
         $rol1 = RolUsuario::create([
             'nombre'=>'usuario'
         ]);
-
-        $rol1->save();
 
         return [$rol,$rol1];
     }
@@ -52,10 +48,6 @@ class Test extends Controller
         $condicion2 = Condicion::create([
             'nombre'=>'Auxiliar'
         ]);
-
-        $condicion->save();
-        $condicion1->save();
-        $condicion2->save();
         return [$condicion,$condicion1,$condicion2];
     }
 

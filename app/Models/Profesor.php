@@ -8,8 +8,9 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasOne;
+use Tymon\JWTAuth\Contracts\JWTSubject;
 
-class Profesor extends Authenticatable
+class Profesor extends Authenticatable implements JWTSubject
 {
     /** @use HasFactory<\Database\Factories\UserFactory> */
     use HasFactory, Notifiable;
@@ -51,6 +52,20 @@ class Profesor extends Authenticatable
         ];
     }
 
+    public function getJWTIdentifier()
+    {
+        return $this->getKey();
+    }
+
+
+    public function getJWTCustomClaims()
+    {
+        return [
+            #$this->email,
+            $this->load('infoUsuario','rolUsuario'),
+
+        ];
+    }
     
     public function infoUsuario(): BelongsTo {
         return $this->belongsTo(InfoUsuario::class,'infousuario_id');
