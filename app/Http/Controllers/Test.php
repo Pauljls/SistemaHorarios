@@ -29,7 +29,11 @@ class Test extends Controller
         //$condiciones =  Condicion::all();
         //$rol= RolUsuario::first();
         //$rol->load('profesores');
-        $cursos = Curso::all();
+        $cursos = ModalidadCursoAula::all()->load('modalidad',
+        "cursociclo",
+        "aula",
+        "infousuario"
+    )->take(1);
         return response()->json($cursos);
     }
 
@@ -195,7 +199,7 @@ class Test extends Controller
         ]);
 
         $periodo = Periodo::Create([
-            'nombre'=>2025,
+            'año'=>2025,
             'semestre_id'=>3
         ]);
 
@@ -339,72 +343,97 @@ class Test extends Controller
       ,status:200);
     }
 
-    public function crearRelaciones(){
+    public function createRelaciones(){
+        ###########
+        #   INTELIGENCIA ARTIFICIAL
+        ###########
         $modalidadCurso = ModalidadCursoAula::create([
             'modalidad_id'=>1,
             'cursociclo_id'=>1,
             'aula_id'=>2,
-            'profesor_id'=>1
+            'infousuario_id'=>1
         ]);
         $modalidadCurso = ModalidadCursoAula::create([
             'modalidad_id'=>2,
             'cursociclo_id'=>1,
             'aula_id'=>2,
-            'profesor_id'=>1
+            'infousuario_id'=>1
         ]);
         $modalidadCurso = ModalidadCursoAula::create([
             'modalidad_id'=>3,
             'cursociclo_id'=>1,
             'aula_id'=>2,
-            'profesor_id'=>1
+            'infousuario_id'=>1
         ]);
 
         ###############################################
-
+        #   TOPICOS DE INGE DE SOFT 
+        #######
         $modalidadCurso = ModalidadCursoAula::create([
             'modalidad_id'=>1,
-            'cursociclo_id'=>1,
-            'aula_id'=>2,
-            'profesor_id'=>3
+            'cursociclo_id'=>2,
+            'aula_id'=>1,
+            'infousuario_id'=>3
         ]);
         $modalidadCurso = ModalidadCursoAula::create([
             'modalidad_id'=>2,
-            'cursociclo_id'=>1,
-            'aula_id'=>2,
-            'profesor_id'=>3
+            'cursociclo_id'=>2,
+            'aula_id'=>1,
+            'infousuario_id'=>3
         ]);
         $modalidadCurso = ModalidadCursoAula::create([
             'modalidad_id'=>3,
-            'cursociclo_id'=>1,
-            'aula_id'=>2,
-            'profesor_id'=>3
+            'cursociclo_id'=>2,
+            'aula_id'=>1,
+            'infousuario_id'=>3
         ]);
 
         ######################################################
+        # COMPILADORES
+        ##################
         $modalidadCurso = ModalidadCursoAula::create([
             'modalidad_id'=>1,
-            'cursociclo_id'=>1,
-            'aula_id'=>2,
-            'profesor_id'=>2
+            'cursociclo_id'=>3,
+            'aula_id'=>3,
+            'infousuario_id'=>2
         ]);
         $modalidadCurso = ModalidadCursoAula::create([
             'modalidad_id'=>2,
-            'cursociclo_id'=>1,
-            'aula_id'=>2,
-            'profesor_id'=>2
+            'cursociclo_id'=>3,
+            'aula_id'=>3,
+            'infousuario_id'=>2
         ]);
         $modalidadCurso = ModalidadCursoAula::create([
             'modalidad_id'=>3,
-            'cursociclo_id'=>1,
-            'aula_id'=>2,
-            'profesor_id'=>2
+            'cursociclo_id'=>3,
+            'aula_id'=>3,
+            'infousuario_id'=>2
         ]);
-    }
-    //function createCicloxPeriodo(){
-    //    $ciclo = Periodo::create([
-    //        'año'=>'2025',
-    //        'periodo'=>'Extraordinario'
-    //    ]);
-    //}
+    
 
+    ###################################################
+    #   ESTRATEGIAS ALGORITMICAS
+    ###################################
+
+    $modalidadCurso = ModalidadCursoAula::create([
+        'modalidad_id'=>1,
+        'cursociclo_id'=>4,
+        'aula_id'=>3,
+        'infousuario_id'=>4
+    ]);
+    $modalidadCurso = ModalidadCursoAula::create([
+        'modalidad_id'=>2,
+        'cursociclo_id'=>4,
+        'aula_id'=>3,
+        'infousuario_id'=>4
+    ]);
+    $modalidadCurso = ModalidadCursoAula::create([
+        'modalidad_id'=>3,
+        'cursociclo_id'=>4,
+        'aula_id'=>3,
+        'infousuario_id'=>4
+    ]);
+
+    return response()->json(["mensaje"=>"realaciones creadas"],status:200);  
+  }
 }

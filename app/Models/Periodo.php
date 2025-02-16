@@ -3,7 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Model\HasMany;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Periodo extends Model
 {
@@ -13,11 +13,11 @@ class Periodo extends Model
 
     protected $fillable = [
         'año',
-        'semestre_id'
+        'semestre_id'   
     ];
 
     public function cicloPeriodos():HasMany{
-        return $this->hasMany(Ciclo::class,'periodo_id');
+        return $this->hasMany(CicloPeriodo::class,'periodo_id');
     }
     
 }

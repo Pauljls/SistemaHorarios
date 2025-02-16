@@ -3,11 +3,10 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class ModalidadCursoAula extends Model
 {
-    
-    //
     protected $table = "modalidadcursoaulas";
     public $timestamps = false;
 
@@ -15,22 +14,26 @@ class ModalidadCursoAula extends Model
         'modalidad_id',
         'cursociclo_id',
         'aula_id',
-        'profesor_id'
+        'infousuario_id'
     ];
 
-    public function modalidad():BelongsTo{
-        return $this->belongsTo(Modalidad::class,'modalidadid_id');
+    public function modalidad(): BelongsTo
+    {
+        return $this->belongsTo(Modalidad::class, 'modalidad_id');
     }
 
-    public function curso():BelongsTo{
-        return $this->belongsTo(Curso::class,'cursociclo_id');
+    public function cursociclo(): BelongsTo
+    {
+        return $this->belongsTo(CursoCiclo::class, 'cursociclo_id');
     }
 
-    public function Aula():BelongsTo{
-        return $this->belongsTo(Aula::class,'aula_id');
+    public function aula(): BelongsTo
+    {
+        return $this->belongsTo(Aula::class, 'aula_id');
     }
 
-    public function Profesor():BelongsTo{
-        return $this->belongsTo(Profesor::class,'profesor_id');
+    public function infousuario(): BelongsTo
+    {
+        return $this->belongsTo(InfoUsuario::class, 'infousuario_id');
     }
 }

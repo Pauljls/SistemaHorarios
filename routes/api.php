@@ -8,11 +8,12 @@ use App\Http\Controllers\API\DashboardController;
 
 
 
+
 Route::get('/',[Test::Class,'index'])->name('index');
 
 Route::post('/crearProfesor',[Test::class,'crearProfesor'])->name('crearProfesor');
 Route::post('/createData',[Test::class,'createData'])->name('createData');
-
+Route::post('/createRelaciones',[Test::class,'createRelaciones'])->name('createRelaciones');
 
 Route::group([
     'middleware'=>'api',
@@ -25,5 +26,6 @@ Route::group([
 
     Route::get('Dashboard/cantProfesores',[DashboardController::class,'profesoresTotales'])->name('profesoresTotales');
     Route::get('Dashboard/docentes',[DashboardController::class,'docentes'])->name('docentes');
+    Route::get('Dashboard/cursoxcapacidad',[DashboardController::class,'cursoxcapacidad'])->name('cursoxcapacidad');
 }); 
 

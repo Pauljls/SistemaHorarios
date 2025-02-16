@@ -63,7 +63,7 @@ return new class extends Migration
             $table->id();
             $table->foreignId('modalidad_id')->constrained('modalidades')->onDelete('cascade')->nullable();
             $table->foreignId('cursociclo_id')->constrained('cursociclos')->onDelete('cascade')->nullable();
-            $table->foreignId('profesor_id')->constrained('profesores')->onDelete('cascade')->nullable();
+            $table->foreignId('infousuario_id')->constrained('infousuarios')->nullable();
             $table->foreignId('aula_id')->constrained('aulas')->onDelete('cascade')->nullable();
         });
 

@@ -3,6 +3,8 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class CicloPeriodo extends Model
 {
@@ -21,5 +23,9 @@ class CicloPeriodo extends Model
 
     public function periodo():BelongsTo{
         return $this->belongsTo(Curso::class,'periodo_id');
+    }
+
+    public function cursociclos():HasMany{
+        return $this->hasMany(CursoCiclo::class,'cicloperiodo_id');
     }
 }
