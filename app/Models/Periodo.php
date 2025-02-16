@@ -16,8 +16,8 @@ class Periodo extends Model
         'semestre_id'   
     ];
 
-    public function cicloPeriodos():HasMany{
-        return $this->hasMany(CicloPeriodo::class,'periodo_id');
+    public function cicloPeriodos(): HasMany
+    {
+        return $this->hasMany(CicloPeriodo::class, 'periodo_id');
     }
-    
 }

@@ -8,7 +8,6 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class CursoCiclo extends Model
 {
-    //
     protected $table = "cursociclos";
     public $timestamps = false;
 
@@ -17,16 +16,22 @@ class CursoCiclo extends Model
         'cicloperiodo_id'
     ];
 
-    public function curso() : BelongsTo
+    // Relación con el modelo Curso
+    public function curso(): BelongsTo
     {
-        return $this->belongsTo(Curso::class,'curso_id');
+        return $this->belongsTo(Curso::class, 'curso_id');
     }
-    public function ciclo() : BelongsTo
+
+    // Relación con el modelo CicloPeriodo
+    public function ciclo(): BelongsTo
     {
-        return $this->belongsTo(Ciclo::class,'cicloperiodo_id');
+        return $this->belongsTo(CicloPeriodo::class, 'cicloperiodo_id');
     }
-    public function modalidadcursos() : HasMany
+
+    // Relación con ModalidadCursoAula
+    public function modalidadcursos(): HasMany
     {
-        return $this->hasMany(ModalidadCursoAula::class,'cursociclo_id');
+        return $this->hasMany(ModalidadCursoAula::class, 'cursociclo_id');
     }
 }
+
