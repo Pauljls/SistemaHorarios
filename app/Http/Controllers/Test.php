@@ -311,27 +311,27 @@ class Test extends Controller
       $profesor = Profesor::create([
         'email'=>'admin@gmail.com',
         'password'=>'admin',
-        'rolusuario_id'=>$rol->id,
+        'rolusuario_id'=>2,
         'infousuario_id'=>1
       ]);
 
       $profesor = Profesor::create([
         'email'=>'jose@gmail.com',
         'password'=>'admin',
-        'rolusuario_id'=>$rol->id,
+        'rolusuario_id'=>2,
         'infousuario_id'=>2
       ]);
 
       $profesor = Profesor::create([
         'email'=>'carlos@gmail.com',
         'password'=>'admin',
-        'rolusuario_id'=>$rol->id,
+        'rolusuario_id'=>2,
         'infousuario_id'=>3
       ]);
       $profesor = Profesor::create([
         'email'=>'yenny@gmail.com',
         'password'=>'admin',
-        'rolusuario_id'=>$rol->id,
+        'rolusuario_id'=>2,
         'infousuario_id'=>4
       ]);
       
@@ -359,6 +359,7 @@ class Test extends Controller
             'profesor_id'=>1
         ]);
 
+        ###############################################
 
         $modalidadCurso = ModalidadCursoAula::create([
             'modalidad_id'=>1,
@@ -379,6 +380,7 @@ class Test extends Controller
             'profesor_id'=>3
         ]);
 
+        ######################################################
         $modalidadCurso = ModalidadCursoAula::create([
             'modalidad_id'=>1,
             'cursociclo_id'=>1,

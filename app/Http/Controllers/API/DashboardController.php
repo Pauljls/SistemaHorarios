@@ -34,7 +34,7 @@ class DashboardController extends Controller
     //  DOCENTES
 
     public function docentes(){
-        $docentes = InfoUsuario::all()->load('condicion');
+        $docentes = InfoUsuario::all()->load('condicion','categoriaDocente');
         return response()->json($docentes,status: 200);
     }
 

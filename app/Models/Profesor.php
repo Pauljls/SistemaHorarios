@@ -62,7 +62,9 @@ class Profesor extends Authenticatable implements JWTSubject
     {
         return [
             #$this->email,
-            $this->load('infoUsuario','rolUsuario'),
+            $this->load(['infoUsuario.condicion',
+            'infoUsuario.categoriaDocente'],
+            'rolUsuario'),
 
         ];
     }
