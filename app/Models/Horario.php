@@ -13,22 +13,12 @@ class Horario extends Model
 
     protected $fillable = [
         'modadlidadcursoaula_id',
-        'profesor_id',
-        'aula_id',
         'horaInicio',
         'horaFin'
     ];
 
     public function modalidadCurso():BelongsTo{
         return $this->belongsTo(ModalidadCursoAula::class,'modadlidadcursoaula_id');
-    }
-
-    public function profesor():BelongsTo{
-        return $this->belongsTo(Profesor::class,'profesor_id');
-    }
-
-    public function aula():BelongsTo{
-        return $this->belongsTo(Aula::class,'aula_id');
     }
 
 }

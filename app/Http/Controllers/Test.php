@@ -9,6 +9,13 @@ use App\Models\InfoUsuario;
 use App\Models\RolUsuario;
 use App\Models\Aula;
 use App\Models\Curso;
+use App\Models\Ciclo;
+use App\Models\Periodo;
+use App\Models\Semestre;
+use App\Models\CicloPeriodo;
+use App\Models\CursoCiclo;
+use App\Models\Modalidad;
+use App\Models\ModalidadCursoAula;
 use Illuminate\Http\Request;
 
 class Test extends Controller
@@ -26,9 +33,23 @@ class Test extends Controller
         return response()->json($cursos);
     }
 
-    public function createRoles()
+    public function createData()
     {
         //
+
+        $modalidad = Modalidad::create([
+            'nombre'=>'Teoria',
+
+        ]);
+        
+        $modalidad = Modalidad::create([
+            'nombre'=>'Practica',
+
+        ]);
+        $modalidad = Modalidad::create([
+            'nombre'=>'Laboratorio',
+
+        ]);
         $rol = RolUsuario::create([
             'nombre'=>'administrador'
         ]);
@@ -36,11 +57,6 @@ class Test extends Controller
         $rol1 = RolUsuario::create([
             'nombre'=>'usuario'
         ]);
-
-        return [$rol,$rol1];
-    }
-
-    public function createCondiciones(){
         $condicion = Condicion::create([
             'nombre'=>'Principal'
         ]);
@@ -50,10 +66,6 @@ class Test extends Controller
         $condicion2 = Condicion::create([
             'nombre'=>'Auxiliar'
         ]);
-        return [$condicion,$condicion1,$condicion2];
-    }
-
-    public function createCategoria(){
         $categoria = CategoriaDocente::create([
             'nombre'=>'Tiempo Completo',
             'horas'=>40
@@ -63,39 +75,6 @@ class Test extends Controller
             'horas'=>20
         ]);
 
-        $categoria->save();
-        $categoria1->save();
-        return [$categoria,$categoria1];
-    }
-
-    public function crearProfesor(){
-        
-        $rol= RolUsuario::where('id',1)->first();
-        $condicion = Condicion::where('id',1)->first();
-        $categoria = CategoriaDocente::where('id',1)->first();
-
-        $infoUsuario = InfoUsuario::create([
-        'nombre'=>'admin',
-        'nombre2'=>'admin',
-        'apellidoP'=>'admin',
-        'apellidoM'=>'admin',
-        'telefono'=>'999999',
-        'categoriadocente_id'=>$categoria->id,
-        'condicion_id'=>$condicion->id,
-
-      ]);
-        
-      $profesor = Profesor::create([
-        'email'=>'admin@gmail.com',
-        'password'=>'admin',
-        'rolusuario_id'=>$rol->id,
-        'infousuario_id'=>$infoUsuario->id
-      ]);
-      
-      return $profesor;
-    }
-    
-    public function createAulas(){
         $aula = Aula::create([
             'nombre'=>'Info5',
             'capacidad'=>32
@@ -117,10 +96,6 @@ class Test extends Controller
             'capacidad'=>25
         ]);
 
-        return response()->json([$aula,$aula1,$aula2,$aula3,$aula4]);
-    }
-
-    public function createCursos(){
         $curso = Curso::create([
             "nombre"=>"Estrategias Algoritmicas"
         ]);
@@ -206,12 +181,228 @@ class Test extends Controller
         ]);
 
         $curso = Curso::create([
-            "nombre"=>"Proeycto de competencias"
+            "nombre"=>"Proyecto de competencias"
         ]);
 
-        return response()->json([
-            "mensaje"=>"Cursos creadoas"
-        ], status : 200);
+        $semestre = Semestre::create([
+            'nombre'=>'I'
+        ]);
+        $semestre = Semestre::create([
+            'nombre'=>'II'
+        ]);
+        $semestre = Semestre::create([
+            'nombre'=>'Extraordinario'
+        ]);
+
+        $periodo = Periodo::Create([
+            'nombre'=>2025,
+            'semestre_id'=>3
+        ]);
+
+        $ciclo= ciclo::Create([
+            'nombre'=>'primero'
+        ]);
+        $ciclo= ciclo::Create([
+            'nombre'=>'segundo'
+        ]);
+        $ciclo= ciclo::Create([
+            'nombre'=>'tercero'
+        ]);
+        $ciclo= ciclo::Create([
+            'nombre'=>'cuarto'
+        ]);
+        $ciclo= ciclo::Create([
+            'nombre'=>'quinto'
+        ]);
+        $ciclo= ciclo::Create([
+            'nombre'=>'sexto'
+        ]);
+        $ciclo= ciclo::Create([
+            'nombre'=>'setimo'
+        ]);
+        $ciclo= ciclo::Create([
+            'nombre'=>'octavo'
+        ]);
+        $ciclo= ciclo::Create([
+            'nombre'=>'noveno'
+        ]);
+        $ciclo= ciclo::Create([
+            'nombre'=>'decimo'
+        ]);
+        $ciclo= ciclo::Create([
+            'nombre'=>'verano'
+        ]);
+        
+
+        $cicloperiodo = CicloPeriodo::create([
+            'ciclo_id'=>11,
+            'periodo_id'=>1
+        ]);
+
+        $cursoCiclo =  CursoCiclo::create([
+            'curso_id'=>7,
+            'cicloperiodo_id'=>1
+        ]);
+        $cursoCiclo =  CursoCiclo::create([
+            'curso_id'=>20,
+            'cicloperiodo_id'=>1
+        ]);
+        $cursoCiclo =  CursoCiclo::create([
+            'curso_id'=>8,
+            'cicloperiodo_id'=>1
+        ]);
+        $cursoCiclo =  CursoCiclo::create([
+            'curso_id'=>1,
+            'cicloperiodo_id'=>1
+        ]);
+
+        return response()->json(["mensjae"=>'data completada'],status:200);
+        
     }
+
+    public function crearProfesor(){
+        
+        $rol= RolUsuario::where('id',1)->first();
+        $condicion = Condicion::where('id',1)->first();
+        $categoria = CategoriaDocente::where('id',1)->first();
+
+        $infoUsuario = InfoUsuario::create([
+        'nombre'=>'Jorge',
+        'nombre2'=>'Luis',
+        'apellidoP'=>'Gutierrez',
+        'apellidoM'=>'Gutierrez',
+        'telefono'=>'999999',
+        'categoriadocente_id'=>1,
+        'condicion_id'=>1,
+
+      ]);
+
+      $infoUsuario = InfoUsuario::create([
+        'nombre'=>'Jose',
+        'nombre2'=>'Antonio',
+        'apellidoP'=>'Rodriguez',
+        'apellidoM'=>'Melquiades',
+        'telefono'=>'999999',
+        'categoriadocente_id'=>1,
+        'condicion_id'=>1
+
+      ]);
+      $infoUsuario = InfoUsuario::create([
+        'nombre'=>'Carlos',
+        'nombre2'=>'Enrique',
+        'apellidoP'=>'Castillo',
+        'apellidoM'=>'Diestra',
+        'telefono'=>'999999',
+        'categoriadocente_id'=>1,
+        'condicion_id'=>2,
+
+      ]);
+      $infoUsuario = InfoUsuario::create([
+        'nombre'=>'Yenny',
+        'nombre2'=>'Milagros',
+        'apellidoP'=>'Sinfuentes',
+        'apellidoM'=>'Diaz',
+        'telefono'=>'999999',
+        'categoriadocente_id'=>1,
+        'condicion_id'=>2,
+
+      ]);
+        
+      $profesor = Profesor::create([
+        'email'=>'admin@gmail.com',
+        'password'=>'admin',
+        'rolusuario_id'=>$rol->id,
+        'infousuario_id'=>1
+      ]);
+
+      $profesor = Profesor::create([
+        'email'=>'jose@gmail.com',
+        'password'=>'admin',
+        'rolusuario_id'=>$rol->id,
+        'infousuario_id'=>2
+      ]);
+
+      $profesor = Profesor::create([
+        'email'=>'carlos@gmail.com',
+        'password'=>'admin',
+        'rolusuario_id'=>$rol->id,
+        'infousuario_id'=>3
+      ]);
+      $profesor = Profesor::create([
+        'email'=>'yenny@gmail.com',
+        'password'=>'admin',
+        'rolusuario_id'=>$rol->id,
+        'infousuario_id'=>4
+      ]);
+      
+      return response()->json(["mensaje"=>'usuarios creados']
+      ,status:200);
+    }
+
+    public function crearRelaciones(){
+        $modalidadCurso = ModalidadCursoAula::create([
+            'modalidad_id'=>1,
+            'cursociclo_id'=>1,
+            'aula_id'=>2,
+            'profesor_id'=>1
+        ]);
+        $modalidadCurso = ModalidadCursoAula::create([
+            'modalidad_id'=>2,
+            'cursociclo_id'=>1,
+            'aula_id'=>2,
+            'profesor_id'=>1
+        ]);
+        $modalidadCurso = ModalidadCursoAula::create([
+            'modalidad_id'=>3,
+            'cursociclo_id'=>1,
+            'aula_id'=>2,
+            'profesor_id'=>1
+        ]);
+
+
+        $modalidadCurso = ModalidadCursoAula::create([
+            'modalidad_id'=>1,
+            'cursociclo_id'=>1,
+            'aula_id'=>2,
+            'profesor_id'=>3
+        ]);
+        $modalidadCurso = ModalidadCursoAula::create([
+            'modalidad_id'=>2,
+            'cursociclo_id'=>1,
+            'aula_id'=>2,
+            'profesor_id'=>3
+        ]);
+        $modalidadCurso = ModalidadCursoAula::create([
+            'modalidad_id'=>3,
+            'cursociclo_id'=>1,
+            'aula_id'=>2,
+            'profesor_id'=>3
+        ]);
+
+        $modalidadCurso = ModalidadCursoAula::create([
+            'modalidad_id'=>1,
+            'cursociclo_id'=>1,
+            'aula_id'=>2,
+            'profesor_id'=>2
+        ]);
+        $modalidadCurso = ModalidadCursoAula::create([
+            'modalidad_id'=>2,
+            'cursociclo_id'=>1,
+            'aula_id'=>2,
+            'profesor_id'=>2
+        ]);
+        $modalidadCurso = ModalidadCursoAula::create([
+            'modalidad_id'=>3,
+            'cursociclo_id'=>1,
+            'aula_id'=>2,
+            'profesor_id'=>2
+        ]);
+    }
+    //function createCicloxPeriodo(){
+    //    $ciclo = Periodo::create([
+    //        'año'=>'2025',
+    //        'periodo'=>'Extraordinario'
+    //    ]);
+    //}
 
 }

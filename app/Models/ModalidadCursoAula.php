@@ -13,8 +13,9 @@ class ModalidadCursoAula extends Model
 
     protected $fillable = [
         'modalidad_id',
-        'curso_id',
-        'aula_id'
+        'cursociclo_id',
+        'aula_id',
+        'profesor_id'
     ];
 
     public function modalidad():BelongsTo{
@@ -22,10 +23,14 @@ class ModalidadCursoAula extends Model
     }
 
     public function curso():BelongsTo{
-        return $this->belongsTo(Curso::class,'curso_id');
+        return $this->belongsTo(Curso::class,'cursociclo_id');
     }
 
     public function Aula():BelongsTo{
-        return $this->hasMany(Aula::class,'aula_id');
+        return $this->belongsTo(Aula::class,'aula_id');
+    }
+
+    public function Profesor():BelongsTo{
+        return $this->belongsTo(Profesor::class,'profesor_id');
     }
 }

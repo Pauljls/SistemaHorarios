@@ -24,12 +24,12 @@ class InfoUsuario extends Model
     ];
 
     public function profesor(): HasOne{
-        return $this->hasOne(Profesor::class,);
+        return $this->hasOne(Profesor::class,'infousuario_id');
     }
     public function categoriaDocente(): BelongsTo{
-        return $this->belongsTo(CategoriaDocente::class);
+        return $this->belongsTo(CategoriaDocente::class,'categoriadocente_id');
     }
     public function condicion() : BelongsTo{
-        return $this->belongsTo(Condicion::class);
+        return $this->belongsTo(Condicion::class,'condicion_id');
     }
 }

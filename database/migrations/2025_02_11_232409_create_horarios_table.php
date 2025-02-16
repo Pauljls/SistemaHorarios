@@ -18,16 +18,25 @@ return new class extends Migration
 
         }); 
 
+        Schema::create('semestres',function(Blueprint $table){
+            $table->id();
+            $table->string('nombre');
+        }); 
+
         Schema::create('periodos',function(Blueprint $table){
             $table->id();
             $table->string('año')->nullable();
-            $table->string('semestre')->nullable();
-            
+            $table->foreignId('semestre_id')->constrained('semestres')->nullable();
         });
 
         Schema::create('ciclos',function(Blueprint $table){
             $table->id();
             $table->string('nombre')->nullable();
+        });
+
+        Schema::create('cicloperiodos',function(Blueprint $table){
+            $table->id();
+            $table->foreignId('ciclo_id')->constrained('ciclos')->onDelete('cascade')->nullable();
             $table->foreignId('periodo_id')->constrained('periodos')->onDelete('cascade')->nullable();
 
         });
@@ -40,7 +49,7 @@ return new class extends Migration
 
         Schema::create('cursociclos',function(Blueprint $table){
             $table->id();
-            $table->foreignId('ciclo_id')->constrained('ciclos')->onDelete('cascade')->nullable();
+            $table->foreignId('cicloperiodo_id')->constrained('cicloperiodos')->onDelete('cascade')->nullable();
             $table->foreignId('curso_id')->constrained('cursos')->onDelete('cascade')->nullable();
         });
 
@@ -54,14 +63,13 @@ return new class extends Migration
             $table->id();
             $table->foreignId('modalidad_id')->constrained('modalidades')->onDelete('cascade')->nullable();
             $table->foreignId('cursociclo_id')->constrained('cursociclos')->onDelete('cascade')->nullable();
+            $table->foreignId('profesor_id')->constrained('profesores')->onDelete('cascade')->nullable();
             $table->foreignId('aula_id')->constrained('aulas')->onDelete('cascade')->nullable();
         });
 
         Schema::create('horarios', function (Blueprint $table) {
             $table->id();
             $table->foreignId('modalidadescursoaula_id')->constrained('modalidadcursoaulas')->onDelete('cascade')->nullable();
-            $table->foreignId('profesor_id')->constrained('profesores')->onDelete('cascade')->nullable();
-            //$table->foreignId('aula_id')->constrained('aulas')->onDelete('cascade')->nullable();
             $table->unsignedInteger('horainicio')->nullable();
             $table->unsignedInteger('horafin')->nullable();
         });

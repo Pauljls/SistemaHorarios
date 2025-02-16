@@ -4,16 +4,14 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Test;
 use App\Http\Controllers\API\LoginController;
 use App\Http\Controllers\API\LogoutController;
+use App\Http\Controllers\API\DashboardController;
 
 
 
 Route::get('/',[Test::Class,'index'])->name('index');
-Route::post('/createRoles',[Test::Class,'createRoles'])->name('create');
-Route::post('/createCondiciones',[Test::Class,'createCondiciones'])->name('createConcidiciones');
-Route::post('/createCategoria',[Test::class,'createCategoria'])->name('createCategorias');
+
 Route::post('/crearProfesor',[Test::class,'crearProfesor'])->name('crearProfesor');
-Route::post('/createAulas',[Test::class,'createAulas'])->name('createAulas');
-Route::post('/createCursos',[Test::class,'createCursos'])->name('createCursos');
+Route::post('/createData',[Test::class,'createData'])->name('createData');
 
 
 Route::group([
@@ -22,5 +20,10 @@ Route::group([
 ], function (){
     Route::post('login',LoginController::class);
     Route::post('logout',LogoutController::class);
+
+    //DASHBOARD
+
+    Route::get('Dashboard/cantProfesores',[DashboardController::class,'profesoresTotales'])->name('profesoresTotales');
+    Route::get('Dashboard/docentes',[DashboardController::class,'docentes'])->name('docentes');
 }); 
 

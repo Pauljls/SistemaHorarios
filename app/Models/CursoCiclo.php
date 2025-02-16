@@ -13,13 +13,13 @@ class CursoCiclo extends Model
 
     protected $fillable = [
         'curso_id',
-        'ciclo_id'
+        'cicloperiodo_id'
     ];
 
     public function curso() :BelongsTo{
         return $this->belongsTo(Curso::class,'curso_id');
     }
     public function ciclo() :BelongsTo{
-        return $this->belongsTo(Ciclo::class,'ciclo_id');
+        return $this->belongsTo(Ciclo::class,'cicloperiodo_id');
     }
 }

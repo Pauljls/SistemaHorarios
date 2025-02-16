@@ -13,10 +13,10 @@ class Periodo extends Model
 
     protected $fillable = [
         'año',
-        'semestre'
+        'semestre_id'
     ];
 
-    public function ciclos():HasMany{
+    public function cicloPeriodos():HasMany{
         return $this->hasMany(Ciclo::class,'periodo_id');
     }
     
