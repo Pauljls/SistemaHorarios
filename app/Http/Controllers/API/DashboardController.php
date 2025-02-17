@@ -31,27 +31,7 @@ class DashboardController extends Controller
     // GRAFICO
 
 public function cursoxcapacidad() {
-    $periodo = Periodo::orderBy('id', 'desc')
-        ->with([
-            'cicloPeriodos.cursociclos.modalidadcursos.aula',
-            'cicloPeriodos.cursociclos.modalidadcursos.modalidad',
-            'cicloPeriodos.cursociclos.curso'
-        ])
-        ->first();
-
-    $resultado = [];
-
-    foreach ($periodo->cicloPeriodos as $cicloPeriodo) {
-        foreach ($cicloPeriodo->cursociclos as $cursoCiclo) {
-            foreach ($cursoCiclo->modalidadcursos as $modalidadCurso) {
-                $resultado[] = [
-                    'curso_nombre' => $cursoCiclo->curso->nombre,
-                    'aula_capacidad' => $modalidadCurso->aula->capacidad,
-                    'modalidad_nombre' => $modalidadCurso->modalidad->nombre // Aquí se agrega el nombre de la modalidad
-                ];
-            }
-        }
-    }
+    $resultado = Aula::all();
 
     return response()->json($resultado);
 }
