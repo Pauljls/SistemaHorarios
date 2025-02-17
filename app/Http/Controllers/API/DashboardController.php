@@ -61,7 +61,7 @@ public function cursoxcapacidad() {
     //  DOCENTES
 
     public function docentes(){
-        $docentes = InfoUsuario::take(3)->get()->load('condicion',"profesor");
+        $docentes = InfoUsuario::take(3)->get()->load('condicion',"profesor","categoriadocente:id,nombre");
         return response()->json($docentes,status: 200);
     }
 
