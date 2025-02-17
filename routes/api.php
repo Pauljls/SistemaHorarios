@@ -25,6 +25,8 @@ Route::group([
     //DASHBOARD
 
     Route::get('Dashboard/cantProfesores',[DashboardController::class,'profesoresTotales'])->name('profesoresTotales');
+    Route::get('Dashboard/cursosTotales',[DashboardController::class,'cursosTotales'])->name('cursosTotales');
+    Route::get('Dashboard/aulasTotales',[DashboardController::class,'aulasTotales'])->name('aulasTotales');
     Route::get('Dashboard/docentes',[DashboardController::class,'docentes'])->name('docentes');
     Route::get('Dashboard/cursoxcapacidad',[DashboardController::class,'cursoxcapacidad'])->name('cursoxcapacidad');
     Route::get('Dashboard/cursosasignados',[DashboardController::class,'cursosasignados'])->name('cursosasignados');

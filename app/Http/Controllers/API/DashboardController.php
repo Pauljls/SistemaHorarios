@@ -5,6 +5,7 @@ namespace App\Http\Controllers\API;
 use App\Http\Controllers\Controller;
 use App\Models\Profesor;
 use App\Models\Curso;
+use App\Models\Aula;
 use App\Models\InfoUsuario;
 use App\Models\ModalidadCursoAula;
 use App\Models\Periodo;
