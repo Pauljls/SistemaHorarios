@@ -56,7 +56,7 @@ class DocentesController extends Controller
                 'categoriadocentes.nombre',
                 'condiciones.nombre'
             )
-            ->get();
+            ->paginate(6);
         
 
 
