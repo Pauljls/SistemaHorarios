@@ -5,6 +5,7 @@ use App\Http\Controllers\Test;
 use App\Http\Controllers\API\LoginController;
 use App\Http\Controllers\API\LogoutController;
 use App\Http\Controllers\API\DashboardController;
+use App\Http\Controllers\API\DocentesController;
 
 
 
@@ -30,5 +31,9 @@ Route::group([
     Route::get('Dashboard/docentes',[DashboardController::class,'docentes'])->name('docentes');
     Route::get('Dashboard/cursoxcapacidad',[DashboardController::class,'cursoxcapacidad'])->name('cursoxcapacidad');
     Route::get('Dashboard/cursosasignados',[DashboardController::class,'cursosasignados'])->name('cursosasignados');
+
+    //DOCCENTES
+
+    Route::get('Docentes/listarDocentes',[DocentesController::class,'listarDocentes'])->name('listarDocentes');
 }); 
 

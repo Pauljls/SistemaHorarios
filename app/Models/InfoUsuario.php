@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasOne;
-
+use Illuminate\Database\Eloquent\Relations\HasMany;
 class InfoUsuario extends Model
 {
     //
@@ -31,5 +31,8 @@ class InfoUsuario extends Model
     }
     public function condicion() : BelongsTo{
         return $this->belongsTo(Condicion::class,'condicion_id');
+    }
+    public function modalidadCursos() : HasMany{
+        return $this->HasMany(ModalidadCursoAula::class,"infousuario_id");;
     }
 }
