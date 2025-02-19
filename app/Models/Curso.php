@@ -14,6 +14,7 @@ class Curso extends Model
 
     protected $fillable = [
         'nombre',
+        'creditos'
     ];
 
     public function cursociclos():HasMany{

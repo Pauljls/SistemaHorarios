@@ -14,7 +14,8 @@ class Horario extends Model
     protected $fillable = [
         'modadlidadcursoaula_id',
         'horaInicio',
-        'horaFin'
+        'horaFin',
+        'dia'
     ];
 
     public function modalidadCurso():BelongsTo{

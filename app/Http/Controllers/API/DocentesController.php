@@ -6,23 +6,15 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Profesor;
 use App\Models\InfoUsuario;
-use App\Models\Periodo  ;
+use App\Models\Periodo;
+use App\Models\CategoriaDocente;
+use App\Models\Condicion;
+use App\Models\ProfesorDTO;
 
 class DocentesController extends Controller
 {
     //
     public function listarDocentes(){
-        //$resultado = Periodo::orderBy('id','desc')
-        //->with([
-        //    'cicloperiodos.cursociclos.modalidadcursos'=>function($query){
-        //        $query->take(1);
-        //    },
-        //    
-        //])->first();
-
-
-        //$resultado = InfoUsuario::with('modalidadCursos')->get();
-
 
         $ultimoPeriodo = Periodo::orderBy('año', 'desc')->orderBy('semestre_id', 'desc')->first();
 
@@ -58,8 +50,34 @@ class DocentesController extends Controller
             )
             ->paginate(6);
         
-
-
         return response()->json($resultados);
     }
+
+    public function categoriaDocente(){
+        $categorias = CategoriaDocente::Select('id','nombre')
+        ->get();
+        return response()->json($categorias);
+    }
+
+    public function condicionDocente(){
+        $condiciones = Condicion::all();
+        return response()->json($condiciones);
+    }
+
+    public function crearDocente(ProfesorDTO $request){
+        $nuevoinfoprofesor = InfoUsuario::create([
+            "nombre"=>$request.nombres,
+            "apellidoP"=>$request.apellidos,
+            "telefono"=>$request.telefono,
+            "direccion"=>$request.direccion,
+            "categoriadocente_id"=>$request.categoriaDocente,
+            "condicion_id"=>$request.condicion
+        ]);
+
+        $crearprofesor = Profesor::create([
+            ""
+        ]);
+    }
+
+
 }

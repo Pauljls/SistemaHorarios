@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use App\Models\Curso;
+use App\Models\Periodo;
 use Illuminate\Http\Request;
 
 class CursosController extends Controller
@@ -11,56 +12,43 @@ class CursosController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function listarcursos()
     {
-        //
+        $ultimoPeriodo = Periodo::orderBy('id', 'desc')->first();
+
+        $cursosDelUltimoPeriodo = $ultimoPeriodo->cicloPeriodos()
+            ->with([
+                'cursociclos.curso',
+                'cursociclos.modalidadcursos.modalidad',
+                'ciclo'
+            ])
+            ->get()
+            ->flatMap(function ($cicloPeriodo) {
+                return $cicloPeriodo->cursociclos->map(function ($cursoCiclo) use ($cicloPeriodo) {
+                    return [
+                        'curso_id' => $cursoCiclo->curso->id,
+                        'curso_nombre' => $cursoCiclo->curso->nombre,
+                        'ciclo_nombre' => $cicloPeriodo->ciclo->nombre,
+                        'creditos' => $cursoCiclo->curso->creditos,
+                        'modalidades' => $cursoCiclo->modalidadcursos->map(function ($modalidadCurso) {
+                            return $modalidadCurso->modalidad->nombre;
+                        })->unique()->values()->all()
+                    ];
+                });
+            });
+        
+        $page = request('page', 1); // Obtener el número de página desde la URL, por defecto 1
+        $perPage = 6;
+        
+        $paginado = $cursosDelUltimoPeriodo->forPage($page, $perPage);
+        
+        return response()->json([
+            'data' => $paginado->values(),
+            'current_page' => $page,
+            'per_page' => $perPage,
+            'total' => $cursosDelUltimoPeriodo->count(),
+            'last_page' => ceil($cursosDelUltimoPeriodo->count() / $perPage)
+        ]);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(Request $request)
-    {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     */
-    public function show(Curso $curso)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(Curso $curso)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, Curso $curso)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(Curso $curso)
-    {
-        //
-    }
 }

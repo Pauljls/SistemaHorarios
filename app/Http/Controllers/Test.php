@@ -101,91 +101,116 @@ class Test extends Controller
         ]);
 
         $curso = Curso::create([
-            "nombre"=>"Estrategias Algoritmicas"
+            "nombre"=>"Estrategias Algoritmicas",
+            "creditos"=>4
         ]);
         $curso = Curso::create([
-            "nombre"=>"Computacion Grafica"
+            "nombre"=>"Computacion Grafica",
+            "creditos"=>4
         ]);
         $curso = Curso::create([
-            "nombre"=>"Algoritmos y Complejidad"
+            "nombre"=>"Algoritmos y Complejidad",
+            "creditos"=>6
         ]);
         $curso = Curso::create([
-            "nombre"=>"Lenguajes Formales y Automatas"
+            "nombre"=>"Lenguajes Formales y Automatas",
+            "creditos"=>4
         ]);
         $curso = Curso::create([
-            "nombre"=>"Bases de Datos I"
+            "nombre"=>"Bases de Datos I",
+            "creditos"=>4
         ]);
         $curso = Curso::create([
-            "nombre"=>"Ingenieria de Software I"
+            "nombre"=>"Ingenieria de Software I",
+            "creditos"=>4
         ]);
         $curso = Curso::create([
-            "nombre"=>"Inteligencia Artificial I"
+            "nombre"=>"Inteligencia Artificial I",
+            "creditos"=>4
         ]);
         $curso = Curso::create([
-            "nombre"=>"Compiladores"
+            "nombre"=>"Compiladores",
+            "creditos"=>2
         ]);
         $curso = Curso::create([
-            "nombre"=>"Computacion Grafica Avanzada"
+            "nombre"=>"Computacion Grafica Avanzada",
+            "creditos"=>4
         ]);
         $curso = Curso::create([
-            "nombre"=>"Desarrollo de Software"
+            "nombre"=>"Desarrollo de Software",
+            "creditos"=>6
         ]);
         $curso = Curso::create([
-            "nombre"=>"Percepcion y Vision por Computadora"
+            "nombre"=>"Percepcion y Vision por Computadora",
+            "creditos"=>6
         ]);
 
         $curso = Curso::create([
-            "nombre"=>"Redes de computadoras I"
+            "nombre"=>"Redes de computadoras I",
+            "creditos"=>4
         ]);
         
         $curso = Curso::create([
-            "nombre"=>"Sistemas Operativos I"
+            "nombre"=>"Sistemas Operativos I",
+            "creditos"=>4
         ]);
         $curso = Curso::create([
-            "nombre"=>"Robotica"
+            "nombre"=>"Robotica",
+            "creditos"=>4
         ]);
         $curso = Curso::create([
-            "nombre"=>"Redes de Computadoras II"
+            "nombre"=>"Redes de Computadoras II",
+            "creditos"=>6
         ]);
         
         $curso = Curso::create([
-            "nombre"=>"Sistemas Operativos II"
+            "nombre"=>"Sistemas Operativos II",
+            "creditos"=>2
         ]);
 
         $curso = Curso::create([
-            "nombre"=>"Practicas Pre-Profesionales"
+            "nombre"=>"Practicas Pre-Profesionales",
+            "creditos"=>10
         ]);
 
         $curso = Curso::create([
-            "nombre"=>"Interaccion Humano Computador"
+            "nombre"=>"Interaccion Humano Computador",
+            "creditos"=>4
         ]);
 
         $curso = Curso::create([
-            "nombre"=>"Topicos en Base de Datos"
+            "nombre"=>"Topicos en Base de Datos",
+            "creditos"=>4
         ]);
 
         $curso = Curso::create([
-            "nombre"=>"Topicos en Ing de Software"
+            "nombre"=>"Topicos en Ing de Software",
+            "creditos"=>6
         ]);
 
         $curso = Curso::create([
-            "nombre"=>"Ing de Software Avanzada"
+            "nombre"=>"Ing de Software Avanzada",
+            "creditos"=>6
         ]);
 
         $curso = Curso::create([
-            "nombre"=>"Seguridad Informatica"
+            "nombre"=>"Seguridad Informatica",
+            "creditos"=>6
         ]);
 
         $curso = Curso::create([
-            "nombre"=>"Topicos en Tecnologias Inmersivas"
+            "nombre"=>"Topicos en Tecnologias Inmersivas",
+            "creditos"=>6
         ]);
 
         $curso = Curso::create([
-            "nombre"=>"Sistemas de Informacion"
+            "nombre"=>"Sistemas de Informacion",
+            "creditos"=>6
         ]);
 
         $curso = Curso::create([
-            "nombre"=>"Proyecto de competencias"
+            "nombre"=>"Proyecto de competencias",
+            "creditos"=>4
         ]);
 
         $semestre = Semestre::create([

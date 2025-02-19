@@ -44,6 +44,7 @@ return new class extends Migration
         Schema::create('cursos',function(Blueprint $table){
             $table->id();
             $table->string('nombre')->nullable();
+            $table->unsignedInteger('creditos')->nullable();
             
         });
 
@@ -70,6 +71,7 @@ return new class extends Migration
         Schema::create('horarios', function (Blueprint $table) {
             $table->id();
             $table->foreignId('modalidadescursoaula_id')->constrained('modalidadcursoaulas')->onDelete('cascade')->nullable();
+            $table->string('dia')->nullable();
             $table->unsignedInteger('horainicio')->nullable();
             $table->unsignedInteger('horafin')->nullable();
         });

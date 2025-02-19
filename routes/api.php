@@ -6,7 +6,7 @@ use App\Http\Controllers\API\LoginController;
 use App\Http\Controllers\API\LogoutController;
 use App\Http\Controllers\API\DashboardController;
 use App\Http\Controllers\API\DocentesController;
-
+use App\Http\Controllers\API\CursosController;
 
 
 
@@ -35,5 +35,11 @@ Route::group([
     //DOCCENTES
 
     Route::get('Docentes/listarDocentes',[DocentesController::class,'listarDocentes'])->name('listarDocentes');
+    Route::get('Docentes/categoriaDocente',[DocentesController::class,'categoriaDocente'])->name('categoriaDocente');
+    Route::get('Docentes/condicionDocente',[DocentesController::class,'condicionDocente'])->name('condicionDocente');
+
+    //CURSOS
+    Route::get('Cursos/listarcursos',[CursosController::class,'listarcursos'])->name('listarcursos');
+    
 }); 
 
