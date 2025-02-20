@@ -66,6 +66,7 @@ return new class extends Migration
             $table->foreignId('cursociclo_id')->constrained('cursociclos')->onDelete('cascade')->nullable();
             $table->foreignId('infousuario_id')->constrained('infousuarios')->nullable();
             $table->foreignId('aula_id')->constrained('aulas')->onDelete('cascade')->nullable();
+            $table->timestamp('created_at')->useCurrent()->nullable();
         });
 
         Schema::create('horarios', function (Blueprint $table) {

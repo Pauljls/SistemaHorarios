@@ -44,6 +44,11 @@ Route::group([
 
     //CURSOS
     Route::get('Cursos/listarcursos',[CursosController::class,'listarcursos'])->name('listarcursos');
+    Route::get('Cursos/docentes',[CursosController::class,'docentes'])->name('docentes');
+    Route::get('Cursos/modalidades',[CursosController::class,'modalidades'])->name('modalidades');
+    Route::get('Cursos/aulas',[CursosController::class,'aulas'])->name('aulas');
+
+    
     
 }); 
 

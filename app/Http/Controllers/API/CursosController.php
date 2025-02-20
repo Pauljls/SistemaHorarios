@@ -32,6 +32,9 @@ class CursosController extends Controller
                         'creditos' => $cursoCiclo->curso->creditos,
                         'modalidades' => $cursoCiclo->modalidadcursos->map(function ($modalidadCurso) {
                             return $modalidadCurso->modalidad->nombre;
+                        })->unique()->values()->all(),
+                        'fecha' => $cursoCiclo->modalidadcursos->map(function ($modalidadCurso) {
+                            return $modalidadCurso->created_at;
                         })->unique()->values()->all()
                     ];
                 });
@@ -51,4 +54,24 @@ class CursosController extends Controller
         ]);
     }
 
+    public function docentes(){
+        $docentes = InfoUsuario::all();
+        return response()->json($docentes);
+    }
+
+    public function aulas(){
+        $aulas = Aula::all();
+        return response()->json($aulas);
+    }
+    public function modalidades(){
+        $modalidades = Modalidad::all();
+        return response()->json($modalidades);
+    }
+    public function crearCurso(CursoCiclo $curso){
+        $nuevocurso = CursoCiclo::create($curso);
+        return response()->json($nuevocurso);
+    }
+    //public function crearAsignacionCurso(ModalidadCursoAula $modalidad){
+    //    $nuevasignacion = ModalidadCurso
+    //}
 }
