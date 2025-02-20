@@ -41,6 +41,7 @@ Route::group([
     Route::get('Docentes/verDocente/{id}',[DocentesController::class,'verDocente'])->name('verDocente');
     Route::post('Docentes/crearDocente',[DocentesController::class,'crearDocente'])->name('crearDocente');
     Route::post('Docentes/actualizarDocente/{id}',[DocentesController::class,'actualizarDocente'])->name('actualizarDocente');
+    Route::post('Docentes/eliminarDocente/{id}',[DocentesController::class,'eliminarDocente'])->name('eliminarDocente');
 
     //CURSOS
     Route::get('Cursos/listarcursos',[CursosController::class,'listarcursos'])->name('listarcursos');

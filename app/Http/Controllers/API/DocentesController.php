@@ -172,5 +172,11 @@ class DocentesController extends Controller
             return response()->json($infoprofesor);
         }
     
+    public function eliminarDocente($id){
+        $docente = InfoUsuario::where('id',$id)
+        ->first();
+        $docente->delete();
+
+    }
 
 }
