@@ -123,7 +123,8 @@ class DocentesController extends Controller
     
         if ($request->hasFile('image')) {
             $nombre = $nuevoinfoprofesor->id . '.' . $request->file('image')->getClientOriginalExtension();
-            $img = $request->file('image')->storeAs('public/img', $nombre);
+            Storage::disk('public')->put('img/'.$nombre,$request->file('image'));
+            //$img = $request->file('image')->storeAs('public/img', $nombre);
             $nuevoinfoprofesor->image_url = '/img/' . $nombre;
             $nuevoinfoprofesor->save();
         }
@@ -136,7 +137,7 @@ class DocentesController extends Controller
         if($request->hasFile('image')){
             Storage::disk('public')->delete($infoprofesor->image_url);
             $nombre = $request->id . '.' . $request->file('image')->getClientOriginalExtension();
-            $img = $request->file('image')->storeAs('public/img', $nombre);
+            Storage::disk('public')->put('img/'.$nombre,$request->file('image'));
             $infoprofesor->image_url = '/img/' . $nombre;
             $infoprofesor->save();
         }
