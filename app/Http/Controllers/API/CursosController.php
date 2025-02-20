@@ -9,6 +9,7 @@ use App\Models\Modalidad;
 use App\Models\CursoCiclo;
 use App\Models\Periodo;
 use App\Models\InfoUsuario;
+use App\Models\ModalidadCursoAula;
 use Illuminate\Http\Request;
 
 class CursosController extends Controller
