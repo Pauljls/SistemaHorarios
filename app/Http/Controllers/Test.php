@@ -340,7 +340,7 @@ class Test extends Controller
       $profesor = Profesor::create([
         'email'=>'admin@gmail.com',
         'password'=>'admin',
-        'rolusuario_id'=>2,
+        'rolusuario_id'=>1,
         'infousuario_id'=>1
       ]);
 

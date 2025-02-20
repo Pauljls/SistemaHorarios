@@ -29,7 +29,8 @@ class DocentesController extends Controller
                 'infousuarios.telefono',
                 'profesores.email',
                 'categoriadocentes.nombre as categoria_docente',
-                'condiciones.nombre as condicion'
+                'condiciones.nombre as condicion',
+                'image_url'
             )
             ->selectRaw('COALESCE(COUNT(DISTINCT cursociclos.id), 0) as total_cursos') // Asegura que sea 0 si no tiene cursos
             ->join('profesores', 'infousuarios.id', '=', 'profesores.infousuario_id') // Relación directa con profesores
@@ -51,9 +52,11 @@ class DocentesController extends Controller
                 'infousuarios.apellidoP',
                 //'infousuarios.apellidoM',
                 'infousuarios.telefono',
+                'infousuarios.image_url',
                 'profesores.email',
                 'categoriadocentes.nombre',
-                'condiciones.nombre'
+                'condiciones.nombre',
+
             )
             ->paginate(6);
         

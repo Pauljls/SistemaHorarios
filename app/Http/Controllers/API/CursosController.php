@@ -4,7 +4,11 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use App\Models\Curso;
+use App\Models\Aula;
+use App\Models\Modalidad;
+use App\Models\CursoCiclo;
 use App\Models\Periodo;
+use App\Models\InfoUsuario;
 use Illuminate\Http\Request;
 
 class CursosController extends Controller
@@ -67,11 +71,27 @@ class CursosController extends Controller
         $modalidades = Modalidad::all();
         return response()->json($modalidades);
     }
+    
+    public function cicloperiodos(CursoCiclo $Curso){
+        $periodo = Periodo::orderBy('id', 'desc')
+        ->with(['cicloperiodos.ciclo:id,nombre'])
+        ->select('id')
+        ->first();
+    
+        // Extraer solo los nombres de los ciclos
+        $nombresCiclos = $periodo->cicloperiodos->pluck('ciclo.nombre');
+        return response()->json($nombresCiclos);
+    }
+
+    public function cursos(){
+        $cursos = Curso::all()
+        ->select('id','nombre');
+        return response()->json($cursos);
+    }
+
     public function crearCurso(CursoCiclo $curso){
         $nuevocurso = CursoCiclo::create($curso);
         return response()->json($nuevocurso);
     }
-    //public function crearAsignacionCurso(ModalidadCursoAula $modalidad){
-    //    $nuevasignacion = ModalidadCurso
-    //}
+
 }
