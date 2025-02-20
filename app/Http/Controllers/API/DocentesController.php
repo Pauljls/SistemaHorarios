@@ -136,8 +136,8 @@ class DocentesController extends Controller
         if($request->hasFile('image')){
             Storage::disk('public')->delete($infoprofesor->image_url);
             $nombre = $request->id . '.' . $request->file('image')->getClientOriginalExtension();
-            $img = $request->file('image')->storeAs('/img', $nombre);
-            $infoprofesor->image_url = '/img/' . $nombre;
+            $img = $request->file('image')->storeAs('/images',$nombre);
+            $nuevoinfoprofesor->image_url = env('APP_URL').':8000'.'/storage'.'/images/'.$nombre;
             $infoprofesor->save();
         }
 
