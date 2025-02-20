@@ -10,7 +10,7 @@ use App\Http\Controllers\API\CursosController;
 
 
 
-Route::get('/',[Test::Class,'index'])->name('index');
+Route::get('/',[Test::class,'index'])->name('index');
 
 Route::post('/crearProfesor',[Test::class,'crearProfesor'])->name('crearProfesor');
 Route::post('/createData',[Test::class,'createData'])->name('createData');

@@ -19,6 +19,7 @@ class InfoUsuario extends Model
         'apellidoM',
         'telefono',
         'direccion',
+        'image_url',
         'categoriadocente_id',
         'condicion_id'
     ];

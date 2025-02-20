@@ -32,6 +32,7 @@ return new class extends Migration
             $table->string('apellidoM')->nullable();
             $table->string('telefono')->nullable();
             $table->string('direccion')->nullable();
+            $table->string('image_url')->nullable();
             $table->foreignId('categoriadocente_id')->constrained('categoriadocentes')->onDelete('cascade')->nullable(); // Usa unsignedBigInteger si en la otra tabla 'id' es bigInt
             $table->foreignId('condicion_id')->constrained('condiciones')->onDelete('cascade')->nullable();
         });

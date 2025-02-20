@@ -15,6 +15,8 @@ class ProfesorDTO extends Model
         "telefono",
         "direccion",
         "categoriaDocente",
-        "condicion"
+        "rolusuario",
+        "condicion",
+        "image"
     ];
 }

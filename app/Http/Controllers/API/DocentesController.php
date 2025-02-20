@@ -66,17 +66,28 @@ class DocentesController extends Controller
 
     public function crearDocente(ProfesorDTO $request){
         $nuevoinfoprofesor = InfoUsuario::create([
-            "nombre"=>$request.nombres,
-            "apellidoP"=>$request.apellidos,
-            "telefono"=>$request.telefono,
-            "direccion"=>$request.direccion,
-            "categoriadocente_id"=>$request.categoriaDocente,
-            "condicion_id"=>$request.condicion
+            "nombre"=>$request->nombres,
+            "apellidoP"=>$request->apellidos,
+            "telefono"=>$request->telefono,
+            "direccion"=>$request->direccion,
+            "categoriadocente_id"=>$request->categoriaDocente,
+            "condicion_id"=>$request->condicion,
+        ]);
+        
+        $crearprofesor = Profesor::create([
+            "email"=>$request->email,
+            "password"=>$request->password,
+            "infousuario_id"=>$nuevoinfoprofesor->id,
+            "rolusuario_id"=>$request->rolusuario
         ]);
 
-        $crearprofesor = Profesor::create([
-            ""
-        ]);
+        if($request->hasFile('image')){
+            $nombre = $nuevoinfoprofesor->id.'.'.$request->file('image')->getClientOriginalExtension();
+            $img = $request->file('image')->storeAs('public/img',$nombre);
+            $nuevoinfoprofesor->image_url='/img/'.$nombre;
+            $nuevoinfoprofesor->save();
+        }
+
     }
 
 
