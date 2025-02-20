@@ -110,6 +110,7 @@ class DocentesController extends Controller
             "direccion" => $request->input('direccion'),
             "categoriadocente_id" => $request->input('categoriaDocente'),
             "condicion_id" => $request->input('condicion'),
+            "image_url"=>asset('images/profile.jpg')
         ]);
     
         $crearprofesor = Profesor::create([
