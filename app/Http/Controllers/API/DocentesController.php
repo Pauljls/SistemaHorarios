@@ -21,9 +21,10 @@ class DocentesController extends Controller
         $resultados = InfoUsuario::select(
                 'infousuarios.id',
                 'infousuarios.nombre',
-                'infousuarios.nombre2',
+                //'infousuarios.nombre2',
                 'infousuarios.apellidoP',
-                'infousuarios.apellidoM',
+                //'infousuarios.apellidoM',
+                'infousuarios.telefono', // Agregado el teléfono
                 'profesores.email',
                 'categoriadocentes.nombre as categoria_docente',
                 'condiciones.nombre as condicion'
@@ -41,9 +42,10 @@ class DocentesController extends Controller
             ->groupBy(
                 'infousuarios.id',
                 'infousuarios.nombre',
-                'infousuarios.nombre2',
+                //'infousuarios.nombre2',
                 'infousuarios.apellidoP',
-                'infousuarios.apellidoM',
+                //'infousuarios.apellidoM',
+                'infousuarios.telefono', // Agregado en el groupBy
                 'profesores.email',
                 'categoriadocentes.nombre',
                 'condiciones.nombre'
