@@ -140,10 +140,9 @@ class DocentesController extends Controller
             Storage::disk('public')->delete($infoprofesor->image_url);
             $nombre = $request->id . '.' . $request->file('image')->getClientOriginalExtension();
             $img = $request->file('image')->storeAs('/images',$nombre);
-            $nuevoinfoprofesor->image_url = env('APP_URL').':8000'.'/storage'.'/images/'.$nombre;
+            $infoprofesor->image_url = env('APP_URL').':8000'.'/storage'.'/images/'.$nombre;
             $infoprofesor->save();
         }
-
         $infoprofesor->update([
             "nombre" => $request->input('nombres'),
             "apellidoP" => $request->input('apellidos'),
@@ -152,15 +151,12 @@ class DocentesController extends Controller
             "categoriadocente_id" => $request->input('categoriaDocente'),
             "condicion_id" => $request->input('condicion'),
         ]);
-
         $infoprofesor->profesor->update([
             "email" => $request->input('email'),
             "password" => bcrypt($request->input('password')),
             "rolusuario_id"=>$request->input("rolusuario")
         ]);
-
         return response()->json($infoprofesor);
-        
     }
 
 
