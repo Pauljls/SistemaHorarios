@@ -134,30 +134,43 @@ class DocentesController extends Controller
         return response()->json($nuevoinfoprofesor);
     }
 
-    public function actualizarDocente(Request $request, $id){
-        $infoprofesor = InfoUsuario::where('id',$id)->first();
-        if($request->hasFile('image')){
-            Storage::disk('public')->delete($infoprofesor->image_url);
-            $nombre = $request->id . '.' . $request->file('image')->getClientOriginalExtension();
-            $img = $request->file('image')->storeAs('/images',$nombre);
-            $infoprofesor->image_url = env('APP_URL').':8000'.'/storage'.'/images/'.$nombre;
-            $infoprofesor->save();
-        }
-        $infoprofesor->update([
-            "nombre" => $request->input('nombres'),
-            "apellidoP" => $request->input('apellidos'),
-            "telefono" => $request->input('telefono'),
-            "direccion" => $request->input('direccion'),
-            "categoriadocente_id" => $request->input('categoriaDocente'),
-            "condicion_id" => $request->input('condicion'),
-        ]);
-        $infoprofesor->profesor->update([
-            "email" => $request->input('email'),
-            "password" => bcrypt($request->input('password')),
-            "rolusuario_id"=>$request->input("rolusuario")
-        ]);
-        return response()->json($infoprofesor);
-    }
 
+    public function actualizarDocente(Request $request, $id){
+            $infoprofesor = InfoUsuario::where('id',$id)->first();
+            
+            if($request->hasFile('image')){
+                // Si existe una imagen previa
+                if($infoprofesor->image_url){
+                    // Extraer solo el nombre del archivo de la URL completa
+                    $currentImagePath = basename($infoprofesor->image_url);
+                    // Eliminar de la ruta correcta
+                    Storage::disk('public')->delete('images/' . $currentImagePath);
+                }
+                
+                // Guardar la nueva imagen (solo una vez)
+                $nombre = $request->id . '.' . $request->file('image')->getClientOriginalExtension();
+                $img = $request->file('image')->storeAs('images', $nombre, 'public');
+                $infoprofesor->image_url = env('APP_URL').':8000'.'/storage'.'/images/'.$nombre;
+                $infoprofesor->save();
+            }
+            
+            $infoprofesor->update([
+                "nombre" => $request->input('nombres'),
+                "apellidoP" => $request->input('apellidos'),
+                "telefono" => $request->input('telefono'),
+                "direccion" => $request->input('direccion'),
+                "categoriadocente_id" => $request->input('categoriaDocente'),
+                "condicion_id" => $request->input('condicion'),
+            ]);
+            
+            $infoprofesor->profesor->update([
+                "email" => $request->input('email'),
+                "password" => bcrypt($request->input('password')),
+                "rolusuario_id"=>$request->input("rolusuario")
+            ]);
+            
+            return response()->json($infoprofesor);
+        }
+    
 
 }
