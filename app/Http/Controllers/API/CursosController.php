@@ -103,14 +103,26 @@ public function cicloperiodos()
         return response()->json($nuevocurso);
     }
 
-    public function listarcursosciclos(){
-        $cursosciclos = Periodo::orderBy('id','desc')
-        ->with(['cicloPeriodos.cursociclos.curso:id,nombre'])
-        ->select(['id'])
-        ->first();
-
-        return response()->json($cursosciclos);
+    public function listarcursosciclos()
+    {
+        $periodo = Periodo::orderBy('id', 'desc')
+            ->with(['cicloPeriodos.cursociclos.curso:id,nombre'])
+            ->select(['id'])
+            ->first();
+    
+        // Transformamos los datos para obtener el id del curso ciclo y el nombre del curso
+        $resultados = $periodo->cicloPeriodos->flatMap(function ($cicloPeriodo) {
+            return $cicloPeriodo->cursociclos->map(function ($cursoCiclo) {
+                return [
+                    'id' => $cursoCiclo->id, // ID de CursoCiclo
+                    'nombre_curso' => $cursoCiclo->curso->nombre, // Nombre del Curso relacionado
+                ];
+            });
+        });
+    
+        return response()->json($resultados);
     }
+    
 
 //ASIGNACION DE MODALIDADES CURSOS AULAS Y DOCENTES (cursociclo + aula + infousuario + modaldiad)
     public function asignarcursos(ModalidadCursoAula $asignacioncurso){
