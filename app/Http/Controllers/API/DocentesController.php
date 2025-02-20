@@ -68,30 +68,32 @@ class DocentesController extends Controller
 
     
 
-    public function crearDocente(ProfesorDTO $request){
+    public function crearDocente(Request $request)
+    {
         $nuevoinfoprofesor = InfoUsuario::create([
-            "nombre"=>$request->nombres,
-            "apellidoP"=>$request->apellidos,
-            "telefono"=>$request->telefono,
-            "direccion"=>$request->direccion,
-            "categoriadocente_id"=>$request->categoriaDocente,
-            "condicion_id"=>$request->condicion,
+            "nombre" => $request->input('nombres'),
+            "apellidoP" => $request->input('apellidos'),
+            "telefono" => $request->input('telefono'),
+            "direccion" => $request->input('direccion'),
+            "categoriadocente_id" => $request->input('categoriaDocente'),
+            "condicion_id" => $request->input('condicion'),
         ]);
-        
+    
         $crearprofesor = Profesor::create([
-            "email"=>$request->email,
-            "password"=>$request->password,
-            "infousuario_id"=>$nuevoinfoprofesor->id,
-            "rolusuario_id"=>$request->rolusuario
+            "email" => $request->input('email'),
+            "password" => bcrypt($request->input('password')),
+            "infousuario_id" => $nuevoinfoprofesor->id,
+            "rolusuario_id" => $request->input('rolusuario')
         ]);
-
-        if($request->hasFile('image')){
-            $nombre = $nuevoinfoprofesor->id.'.'.$request->file('image')->getClientOriginalExtension();
-            $img = $request->file('image')->storeAs('public/img',$nombre);
-            $nuevoinfoprofesor->image_url='/img/'.$nombre;
+    
+        if ($request->hasFile('image')) {
+            $nombre = $nuevoinfoprofesor->id . '.' . $request->file('image')->getClientOriginalExtension();
+            $img = $request->file('image')->storeAs('public/img', $nombre);
+            $nuevoinfoprofesor->image_url = '/img/' . $nombre;
             $nuevoinfoprofesor->save();
         }
-
+    
+        return response()->json($nuevoinfoprofesor);
     }
 
 
