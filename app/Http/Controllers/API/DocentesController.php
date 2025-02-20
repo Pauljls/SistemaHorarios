@@ -64,6 +64,8 @@ class DocentesController extends Controller
         return response()->json($condiciones);
     }
 
+    
+
     public function crearDocente(ProfesorDTO $request){
         $nuevoinfoprofesor = InfoUsuario::create([
             "nombre"=>$request->nombres,
