@@ -57,41 +57,56 @@ class CursosController extends Controller
             'last_page' => ceil($cursosDelUltimoPeriodo->count() / $perPage)
         ]);
     }
-
+//SELECT DOCENTES
     public function docentes(){
-        $docentes = InfoUsuario::all();
+        $docentes = InfoUsuario::all()
+        ->select(['id','nombre','apellidoP']);
         return response()->json($docentes);
     }
-
+//SELECT AULAS
     public function aulas(){
         $aulas = Aula::all();
         return response()->json($aulas);
     }
+//SELECT MODALIDADES
     public function modalidades(){
         $modalidades = Modalidad::all();
         return response()->json($modalidades);
     }
-    
-    public function cicloperiodos(CursoCiclo $Curso){
-        $periodo = Periodo::orderBy('id', 'desc')
+//SELECT CICLOPERIODO
+public function cicloperiodos(CursoCiclo $Curso)
+{
+    $periodo = Periodo::orderBy('id', 'desc')
         ->with(['cicloperiodos.ciclo:id,nombre'])
         ->select('id')
         ->first();
-    
-        // Extraer solo los nombres de los ciclos
-        $nombresCiclos = $periodo->cicloperiodos->pluck('ciclo.nombre');
-        return response()->json($nombresCiclos);
-    }
 
+    // Extraer id y nombre de los ciclos (periodo + ciclo)
+    $ciclos = $periodo->cicloperiodos->map(function ($cicloPeriodo) {
+        return [
+            'id' => $cicloPeriodo->id,
+            'nombre' => $cicloPeriodo->ciclo->nombre,
+        ];
+    });
+
+    return response()->json($ciclos);
+}
+//SELECT CURSOS
     public function cursos(){
         $cursos = Curso::all()
         ->select('id','nombre');
         return response()->json($cursos);
     }
-
-    public function crearCurso(CursoCiclo $curso){
+//CREAR CURSOS EN CICLOS (cicloperiodos + curso)
+    public function crearcursociclo(CursoCiclo $curso){
         $nuevocurso = CursoCiclo::create($curso);
         return response()->json($nuevocurso);
     }
+//ASIGNACION DE MODALIDADES CURSOS AULAS Y DOCENTES (cursociclo + aula + infousuario + modaldiad)
+    public function asignarcursos(ModalidadCursoAula $asignacioncurso){
+        $nuevaasignacino = ModalidadCursoAula::Create($asignacioncurso);
+        return response()->json(); 
+    }
+
 
 }
