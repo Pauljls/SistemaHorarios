@@ -74,7 +74,7 @@ class CursosController extends Controller
         return response()->json($modalidades);
     }
 //SELECT CICLOPERIODO
-public function cicloperiodos(CursoCiclo $Curso)
+public function cicloperiodos()
 {
     $periodo = Periodo::orderBy('id', 'desc')
         ->with(['cicloperiodos.ciclo:id,nombre'])
@@ -102,6 +102,16 @@ public function cicloperiodos(CursoCiclo $Curso)
         $nuevocurso = CursoCiclo::create($curso);
         return response()->json($nuevocurso);
     }
+
+    public function listarcursosciclos(){
+        $cursosciclos = Periodo::orderBy('id','desc')
+        ->with(['cicloPeriodos.cursociclos.curso:id,nombre'])
+        ->select(['id'])
+        ->first();
+
+        return response()->json($cursosciclos);
+    }
+
 //ASIGNACION DE MODALIDADES CURSOS AULAS Y DOCENTES (cursociclo + aula + infousuario + modaldiad)
     public function asignarcursos(ModalidadCursoAula $asignacioncurso){
         $nuevaasignacino = ModalidadCursoAula::Create($asignacioncurso);

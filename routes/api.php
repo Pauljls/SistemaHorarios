@@ -50,8 +50,8 @@ Route::group([
     Route::get('Cursos/aulas',[CursosController::class,'aulas'])->name('aulas');
     Route::get('Cursos/cursos',[CursosController::class,'cursos'])->name('cursos');
     Route::get('Cursos/cicloPeriodos',[CursosController::class,'cicloPeriodos'])->name('cicloPeriodos');
-
-    
+    Route::post('Cursos/crearcursociclo',[CursosController::class,'crearcursociclo'])->name('crearcursociclo');
+    Route::get('Cursos/listarcursosciclos',[CursosController::class,'listarcursosciclos'])->name('listarcursosciclos');
     
 }); 
 

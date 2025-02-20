@@ -165,7 +165,6 @@ class DocentesController extends Controller
             
             $infoprofesor->profesor->update([
                 "email" => $request->input('email'),
-                "password" => bcrypt($request->input('password')),
                 "rolusuario_id"=>$request->input("rolusuario")
             ]);
             
