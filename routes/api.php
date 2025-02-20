@@ -52,6 +52,6 @@ Route::group([
     Route::get('Cursos/cicloPeriodos',[CursosController::class,'cicloPeriodos'])->name('cicloPeriodos');
     Route::post('Cursos/crearcursociclo',[CursosController::class,'crearcursociclo'])->name('crearcursociclo');
     Route::get('Cursos/listarcursosciclos',[CursosController::class,'listarcursosciclos'])->name('listarcursosciclos');
-    
+    Route::post('Cursos/asignarcursos',[CursosController::class,'asignarcursos'])->name('asignarcursos');
 }); 
 
