@@ -8,6 +8,7 @@ class ProfesorDTO extends Model
 {
     //
     protected $fillable = [
+        "id",
         "nombres",
         "apellidos",
         "email",
