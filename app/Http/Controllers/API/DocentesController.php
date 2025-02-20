@@ -123,8 +123,8 @@ class DocentesController extends Controller
     
         if ($request->hasFile('image')) {
             $nombre = $nuevoinfoprofesor->id . '.' . $request->file('image')->getClientOriginalExtension();
-            $img = $request->file('image')->storeAs('/img',$nombre);
-            $nuevoinfoprofesor->image_url = env('APP_URL').':8000'.'/public'.'/storage'.'/img/'.$nombre;
+            $img = $request->file('image')->storeAs('/images',$nombre);
+            $nuevoinfoprofesor->image_url = env('APP_URL').':8000'.'/storage'.'/images/'.$nombre;
             $nuevoinfoprofesor->save();
         }
     
